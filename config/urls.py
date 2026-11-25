@@ -20,6 +20,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 from apps.admin.moderation.views import AdminChannelsView
+from apps.ai.views import AskAIView
 from apps.group_channels.views import (
     CollectionDetailView,
     CollectionsCatalogView,
@@ -50,6 +51,11 @@ urlpatterns = [
     path("post/", PostPageView.as_view(), name="post_page"),
     path("dashboard/", include("apps.homepage.urls")),
     path("ai-cabinet/", include("apps.ai.urls")),
+    path(
+            "author/ask-ai/",
+            AskAIView.as_view(),
+            name="author_ask_ai"
+        ),
     path("auth/", include("apps.users.urls")),
     path("group/", include("apps.group_channels.urls")),
     path("blog/", include("apps.blog.urls")),

@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import patch
+
+import pytest
 
 from apps.ai.services.ask_service import ask_about_channel
 from apps.parser.models import ChannelStats, TelegramChannel
