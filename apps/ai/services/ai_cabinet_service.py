@@ -2,8 +2,11 @@ from __future__ import annotations
 
 from typing import Any, Optional
 
+from apps.ai.chips import DEFAULT_CHIPS
 from apps.ai.dto.ai_cabinet_dto import (
     AICabinetDTO,
+    AskAIPropsDTO,
+    AskChipDTO,
     CompetitorDTO,
     IdeaDTO,
     InsightDTO,
@@ -45,6 +48,11 @@ class AICabinetService:
                 else []
             ),
             heatMapData=ai_mocks.MOCK_HEAT_MAP if demo_enabled else {},
+            ask_ai=AskAIPropsDTO(
+                chips=[
+                    AskChipDTO.model_validate(chip) for chip in DEFAULT_CHIPS
+                ]
+            ),
         )
 
     def _build_insights(self, demo_enabled: bool) -> list[InsightDTO]:

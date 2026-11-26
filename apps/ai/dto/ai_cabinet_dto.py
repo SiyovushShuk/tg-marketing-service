@@ -27,6 +27,20 @@ class CompetitorDTO(BaseModel):
     delta: float
 
 
+class AskChipDTO(BaseModel):
+    """Быстрый чип-промпт блока «Спросить AI»."""
+
+    id: str
+    label: str
+    prompt: str
+
+
+class AskAIPropsDTO(BaseModel):
+    """Props блока «Спросить AI»."""
+
+    chips: List[AskChipDTO] = Field(default_factory=list)
+
+
 class AICabinetDTO(BaseModel):
     """Props страницы 'AICabinet' (/ai-cabinet/).
 
@@ -38,3 +52,4 @@ class AICabinetDTO(BaseModel):
     insights: List[InsightDTO] = Field(default_factory=list)
     competitors: List[CompetitorDTO] = Field(default_factory=list)
     heatMapData: Dict[str, Dict[str, int]] = Field(default_factory=dict)
+    ask_ai: AskAIPropsDTO = Field(default_factory=AskAIPropsDTO)

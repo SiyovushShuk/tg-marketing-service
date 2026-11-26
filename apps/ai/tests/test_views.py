@@ -88,3 +88,14 @@ def test_clear_demo_empties_ai_cabinet(client):
     assert props["insights"] == []
     assert props["competitors"] == []
     assert props["heatMapData"] == {}
+
+
+def test_ai_cabinet_view_has_ask_ai_chips(client):
+    props = _props(client)
+
+    chips = props["ask_ai"]["chips"]
+    assert len(chips) >= 3
+    for chip in chips:
+        assert set(chip) == {"id", "label", "prompt"}
+        assert chip["label"]
+        assert chip["prompt"]
